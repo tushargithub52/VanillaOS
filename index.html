@@ -8,23 +8,151 @@
   </head>
   <body>
     <div class="wallpaper">
-      <img src="./assets/Image2.jpg" alt="" />
     </div>
 
     <main class="desktop">
-        <img src="./assets/thispc.png" alt="" id="thispc" height="70px">
-        <div class="thispcfolder">
-            <div class="top">
-                <p>🖥️ This PC</p>
-                <div class="btns">
-                    <div class="minthispc">🗕</div>
-                    <div class="maxthispc">🗖</div>
-                    <div class="closethispc">x</div>
-                </div>
-            </div>
-
+      <div id="thispc">
+        <img src="./assets/thispc.png" alt="" height="40px" />
+        <p>This PC</p>
+      </div>
+      <div class="thispcfolder">
+        <div class="topthispc">
+          <p>🖥️ This PC</p>
+          <div class="btns">
+            <div class="minthispc">🗕</div>
+            <div class="maxthispc">🗖</div>
+            <div class="closethispc">x</div>
+          </div>
         </div>
-        <img src="./assets/recycle-bin.png" alt="" id="recycle-bin" height="65px">
+        <div class="content">
+          <div class="sidebar">
+            <p>Quick Access</p>
+            <ul>
+              <li>📄 Documents</li>
+              <li>🖼️ Pictures</li>
+              <li>🎵 Music</li>
+              <li>📹 Videos</li>
+              <li>📂 Downloads</li>
+            </ul>
+          </div>
+          <div class="main">
+            <h4>Devices and drives</h4>
+            <div class="drives">
+              <div class="drive">
+                <img src="./assets/disk.png" alt="C Drive" />
+                <p>Local Disk (C:)</p>
+                <p>24.7 GB free of 256 GB</p>
+              </div>
+              <div class="drive">
+                <img src="./assets/usb.png" alt="USB Drive" />
+                <p>USB Drive (D:)</p>
+                <p>13.2 GB free of 64 GB</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="recyclebin">
+        <img src="./assets/recycle-bin.png" alt="" height="40px" />
+        <p>Recycle Bin</p>
+      </div>
+      <div class="recyclebinfolder">
+        <div class="toprecyclebin">
+          <p>♻ Recycle Bin</p>
+          <div class="btns">
+            <div class="minrecyclebin">🗕</div>
+            <div class="maxrecyclebin">🗖</div>
+            <div class="closerecyclebin">x</div>
+          </div>
+        </div>
+        <div class="content">
+          <ol>
+            <li>📂Item 1 <span class="delete-btn">🗑️</span></li>
+            <li>📂Item 2 <span class="delete-btn">🗑️</span></li>
+            <li>📂Item 3 <span class="delete-btn">🗑️</span></li>
+            <li>📂Item 4 <span class="delete-btn">🗑️</span></li>
+            <li>📂Item 5 <span class="delete-btn">🗑️</span></li>
+          </ol>
+        </div>
+      </div>
+
+      <div id="notepad">
+        <img src="./assets/notepad.png" alt="" height="40px" />
+        <p>Notepad</p>
+      </div>
+      <div class="notepadfolder">
+        <div class="topnotepad">
+          <p>📓 Notepad</p>
+          <div class="btns">
+            <div class="minnotepad">🗕</div>
+            <div class="maxnotepad">🗖</div>
+            <div class="closenotepad">x</div>
+          </div>
+        </div>
+        <div class="toolbar">
+          <button class="zoom-in">+ A</button>
+          <button class="zoom-out">- A</button>
+          <button class="clear">🧹Clear File</button>
+          <button class="save">💾Save file</button>
+          <button class="load">📂Load saved File</button>
+        </div>
+        <textarea
+          class="notepad-content"
+          placeholder="Save your notes here..."
+        ></textarea>
+      </div>
+
+      <div id="terminal">
+        <img src="./assets/terminal.png" alt="" height="40px" />
+        <p>Terminal</p>
+      </div>
+      <div class="terminalfolder">
+        <div class="topterminal">
+          <p>🖥 Terminal</p>
+          <div class="btns">
+            <div class="minterminal">🗕</div>
+            <div class="maxterminal">🗖</div>
+            <div class="closeterminal">x</div>
+          </div>
+        </div>
+        <div class="terminal-content" id="terminal-output">
+          <div class="line">
+            VanillaOS Terminal. Type `help` to get started.
+          </div>
+        </div>
+        <label class="terminal-input">
+          <span class="path">PS C:\Users\TUSHAR RAI></span>
+          <input type="text" id="terminal-input" autocomplete="off" />
+        </label>
+      </div>
+
+      <div id="chrome">
+        <img src="./assets/chrome.png" alt="" height="40px" />
+        <p>Chrome</p>
+      </div>
+      <div class="chromefolder">
+        <div class="topchrome">
+          <p>🌐 VanillaOS Chrome</p>
+          <div class="btns">
+            <div class="minchrome">🗕</div>
+            <div class="maxchrome">🗖</div>
+            <div class="closechrome">x</div>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <button class="back">⬅</button>
+          <button class="forward">➡</button>
+          <button class="reload">🔄</button>
+          <input type="text" class="urlbar" placeholder="Enter URL" />
+          <button class="go">Go</button>
+        </div>
+
+        <div class="iframe-container">
+          <iframe class="chrome-iframe" src="" frameborder="0"></iframe>
+        </div>
+      </div>
     </main>
 
     <footer class="task-bar">
@@ -33,67 +161,11 @@
         <img
           src="./assets/start.png"
           alt="start"
-          class="start"
-          height="24px"
-          width="24px"
+          id="start"
+          height="35px"
+          width="35px"
         />
         <input type="text" placeholder="🔍  Search web & PC" id="search" />
-        <img
-          src="./assets/copilot.png"
-          alt="copilot"
-          class="copilot"
-          height="24px"
-          width="24px"
-        />
-        <img
-          src="./assets/file-explorer.png"
-          alt="file-explorer"
-          class="file-explorer"
-          height="22px"
-          width="24px"
-        />
-        <img
-          src="./assets/microsoft-store.png"
-          alt="microsoft-store"
-          class="microsoft-store"
-          height="24px"
-          width="24px"
-        />
-        <img
-          src="./assets/chrome.png"
-          alt="chrome"
-          class="chrome"
-          height="26px"
-          width="26px"
-        />
-        <img
-          src="./assets/telegram.png"
-          alt="telegram"
-          class="telegram"
-          height="24px"
-          width="24px"
-        />
-        <img
-          src="./assets/whatsapp.png"
-          alt="whatsapp"
-          class="whatsapp"
-          height="24px"
-          width="24px"
-        />
-        <img
-          src="./assets/vscode.png"
-          alt="vscode"
-          class="vscode"
-          height="24px"
-          width="24px"
-        />
-        <img
-          src="./assets/notepad.png"
-          alt="notepad"
-          class="notepad"
-          height="24px"
-          width="24px"
-        />
       </div>
       <div class="right">
         <div class="timedate">
@@ -105,6 +177,113 @@
         /></span>
       </div>
     </footer>
+
+    <div class="start-menu">
+      <div class="pinned-apps">
+        <div class="app" data-app="thispc">
+          <img src="./assets/thispc.png" alt="" height="34px" />
+          <p>This PC</p>
+        </div>
+        <div class="app" data-app="notepad">
+          <img src="./assets/notepad.png" alt="" height="34px" />
+          <p>Notepad</p>
+        </div>
+        <div class="app" data-app="recyclebin">
+          <img src="./assets/recycle-bin.png" alt="" height="34px" />
+          <p>Recycle Bin</p>
+        </div>
+        <div class="app" data-app="terminal">
+          <img src="./assets/terminal.png" alt="" height="34px" />
+          <p>Terminal</p>
+        </div>
+        <div class="app" data-app="chrome">
+          <img src="./assets/chrome.png" alt="" height="34px" />
+          <p>Chrome</p>
+        </div>
+      </div>
+      <div class="bottom-bar">
+        <div class="profile">👤 Admin</div>
+        <div class="settings">⚙️ Settings</div>
+      </div>
+    </div>
+
+    <div class="settingsfolder">
+      <div class="topsettings">
+        <p>⚙️ Settings</p>
+        <div class="btns">
+          <div class="minsettings">🗕</div>
+          <div class="maxsettings">🗖</div>
+          <div class="closesettings">x</div>
+        </div>
+      </div>
+      <div class="settings-content">
+        <aside class="sidebar">
+          <ul>
+            <li class="tab active" data-tab="display">Display</li>
+            <li class="tab" data-tab="theme">Theme</li>
+            <li class="tab" data-tab="wallpaper">Wallpaper</li>
+            <li class="tab" data-tab="sound">Sound</li>
+          </ul>
+        </aside>
+        <section class="panel">
+          <div class="panel-content" id="display">
+            <h3>Brightness</h3>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="50"
+              class="slider brightness-slider"
+            />
+          </div>
+          <div class="panel-content hidden" id="theme">
+            <h3>Choose Theme</h3>
+            <button class="theme-btn" data-theme="light">🌞 Light</button>
+            <button class="theme-btn" data-theme="dark">🌙 Dark</button>
+          </div>
+          <div class="panel-content hidden" id="wallpaper">
+            <h3>Select Wallpaper</h3>
+            <div class="wallpaper-options">
+              <img
+                src="./assets/Image1.jpg"
+                class="wallpaper-thumb"
+                alt="wall1"
+              />
+              <img
+                src="./assets/Image2.jpg"
+                class="wallpaper-thumb"
+                alt="wall2"
+              />
+              <img
+                src="./assets/Image3.jpg"
+                class="wallpaper-thumb"
+                alt="wall3"
+              />
+              <img
+                src="./assets/Image4.jpg"
+                class="wallpaper-thumb"
+                alt="wall4"
+              />
+              <img
+                src="./assets/Image5.jpg"
+                class="wallpaper-thumb"
+                alt="wall5"
+              />
+            </div>
+          </div>
+          <div class="panel-content hidden" id="sound">
+            <h3>Volume</h3>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="70"
+              class="slider volume-slider"
+            />
+          </div>
+        </section>
+      </div>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>

@@ -3,85 +3,590 @@
   padding: 0;
   box-sizing: border-box;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  color: rgb(226, 226, 226);
+  color: rgb(0, 0, 0);
 }
 
 html,
 body {
   height: 100vh;
   width: 100vw;
-  overflow: none;
-  position: relative;
+  overflow: auto;
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .wallpaper {
   height: 100vh;
   width: 100vw;
-  overflow-x: hidden;
-  overflow-y: hidden;
-  position: relative;
-}
-.wallpaper img {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  background-image: url("./assets/Image2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .desktop #thispc {
+  text-align: center;
   position: absolute;
-  top: 6vh;
-  left: 2vw;
+  top: 35px;
+  left: 15px;
   cursor: pointer;
-  z-index: 5;
+  padding: 4px 19px;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.desktop #thispc p {
+  color: white;
+  font-weight: 300;
+}
+.desktop #thispc:hover {
+  background-color: #313131;
 }
 .desktop .thispcfolder {
   display: none;
   background-color: white;
   color: black;
-  height: 50vh;
-  width: 50vw;
   position: absolute;
   z-index: 20;
   top: 20vh;
   left: 10vw;
-  border-radius: 10px;
   overflow: hidden;
 }
-.desktop .thispcfolder .top {
+.desktop .thispcfolder .topthispc {
   height: 40px;
   width: 100%;
-  border-bottom: 1px solid rgb(131, 131, 131);
-  position: fix;
-  top: 0;
-  left: 0;
+  background: linear-gradient(to right, #e4e4e4, #d6d6d6);
+  border-bottom: 1px solid #aaa;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-left: 8px;
+  cursor: grab;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
-.desktop .thispcfolder .top p {
-  color: black;
-  font-size: 12px;
+.desktop .thispcfolder .topthispc p {
+  color: #222;
+  font-size: 14px;
   font-weight: 600;
-}
-.desktop .thispcfolder .top .btns {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-left: 10px;
+}
+.desktop .thispcfolder .topthispc .btns {
+  display: flex;
+  gap: 4px;
+  height: 100%;
+}
+.desktop .thispcfolder .topthispc .btns .minthispc,
+.desktop .thispcfolder .topthispc .btns .maxthispc,
+.desktop .thispcfolder .topthispc .btns .closethispc {
+  padding: 0 12px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
   justify-content: center;
-  height: 100%;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
-.desktop .thispcfolder .top .btns .minthispc, .desktop .thispcfolder .top .btns .maxthispc, .desktop .thispcfolder .top .btns .closethispc {
-  color: black;
-  padding: 7px 10px;
-  height: 100%;
+.desktop .thispcfolder .topthispc .btns .minthispc:hover,
+.desktop .thispcfolder .topthispc .btns .maxthispc:hover {
+  background-color: #cecece;
+}
+.desktop .thispcfolder .topthispc .btns .closethispc:hover {
+  background-color: #f87171;
+  color: white;
+}
+.desktop .thispcfolder .content {
+  display: flex;
+  height: calc(100% - 40px);
+}
+.desktop .thispcfolder .content .sidebar {
+  width: 220px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+  color: #222;
+}
+.desktop .thispcfolder .content .sidebar .section-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+.desktop .thispcfolder .content .sidebar ul {
+  list-style: none;
+  padding-left: 5px;
+}
+.desktop .thispcfolder .content .sidebar ul li {
+  padding: 6px 0;
+  font-size: 14px;
+  cursor: pointer;
+  color: #333;
+}
+.desktop .thispcfolder .content .sidebar ul li:hover {
+  background-color: #d9e6ff;
+  font-weight: 600;
+  border-radius: 4px;
+  padding-left: 4px;
+}
+.desktop .thispcfolder .content .main {
+  flex: 1;
+  padding: 20px;
+  background-color: white;
+  color: #222;
+}
+.desktop .thispcfolder .content .main h4 {
+  margin-bottom: 10px;
   font-size: 15px;
-  cursor: pointer;
 }
-.desktop #recycle-bin {
-  position: absolute;
-  top: 18vh;
-  left: 1vw;
+.desktop .thispcfolder .content .main .drives {
+  display: flex;
+  gap: 30px;
+  margin-top: 10px;
+}
+.desktop .thispcfolder .content .main .drives .drive {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
   cursor: pointer;
-  z-index: 5;
+  transition: all 0.2s ease-in;
+}
+.desktop .thispcfolder .content .main .drives .drive:hover {
+  background-color: #e6f0ff;
+  transform: scale(1.03);
+}
+.desktop .thispcfolder .content .main .drives .drive img {
+  height: 60px;
+  margin-bottom: 6px;
+}
+.desktop .thispcfolder .content .main .drives .drive p {
+  font-size: 13px;
+}
+.desktop #recyclebin {
+  text-align: center;
+  position: absolute;
+  top: 140px;
+  left: 15px;
+  cursor: pointer;
+  padding: 4px 12px;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.desktop #recyclebin p {
+  color: white;
+  font-weight: 300;
+}
+.desktop #recyclebin:hover {
+  background-color: #313131;
+}
+.desktop .recyclebinfolder {
+  position: absolute;
+  top: 20vh;
+  left: 10vw;
+  height: 50vh;
+  width: 50vw;
+  background-color: white;
+  border-radius: 10px;
+  display: none;
+  flex-direction: column;
+  z-index: 20;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  overflow-y: hidden;
+}
+.desktop .recyclebinfolder .toprecyclebin {
+  height: 40px;
+  width: 100%;
+  background: linear-gradient(to right, #e4e4e4, #d6d6d6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #aaa;
+  cursor: grab;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.desktop .recyclebinfolder .toprecyclebin p {
+  font-size: 14px;
+  font-weight: 600;
+  color: #222;
+  margin-left: 10px;
+}
+.desktop .recyclebinfolder .toprecyclebin .btns {
+  display: flex;
+  gap: 4px;
+  height: 100%;
+}
+.desktop .recyclebinfolder .toprecyclebin .btns .minrecyclebin,
+.desktop .recyclebinfolder .toprecyclebin .btns .maxrecyclebin,
+.desktop .recyclebinfolder .toprecyclebin .btns .closerecyclebin {
+  padding: 0 12px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.desktop .recyclebinfolder .toprecyclebin .btns .minrecyclebin:hover,
+.desktop .recyclebinfolder .toprecyclebin .btns .maxrecyclebin:hover {
+  background-color: #cecece;
+}
+.desktop .recyclebinfolder .toprecyclebin .btns .closerecyclebin:hover {
+  background-color: #f87171;
+  color: white;
+}
+.desktop .recyclebinfolder .content {
+  flex: 1;
+  padding: 10px 15px;
+  background-color: #fff;
+  overflow-y: auto;
+  max-height: calc(100% - 40px);
+}
+.desktop .recyclebinfolder .content ol {
+  list-style: none;
+}
+.desktop .recyclebinfolder .content ol li {
+  position: relative;
+  padding: 8px 30px 8px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+}
+.desktop .recyclebinfolder .content ol li .delete-btn {
+  font-size: 14px;
+  cursor: pointer;
+  color: #dc2626;
+  transition: transform 0.2s ease;
+}
+.desktop .recyclebinfolder .content ol li .delete-btn:hover {
+  transform: scale(1.2);
+}
+.desktop #notepad {
+  text-align: center;
+  position: absolute;
+  top: 245px;
+  left: 15px;
+  cursor: pointer;
+  padding: 4px 20px;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.desktop #notepad p {
+  color: white;
+  font-weight: 300;
+}
+.desktop #notepad:hover {
+  background-color: #313131;
+}
+.desktop .notepadfolder {
+  display: none;
+  position: absolute;
+  top: 20vh;
+  left: 15vw;
+  width: 50vw;
+  height: 50vh;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  z-index: 20;
+  overflow: hidden;
+  flex-direction: column;
+}
+.desktop .notepadfolder .topnotepad {
+  height: 40px;
+  width: 100%;
+  background: linear-gradient(to right, #e4e4e4, #d6d6d6);
+  border-bottom: 1px solid #aaa;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: grab;
+}
+.desktop .notepadfolder .topnotepad p {
+  font-weight: 600;
+  font-size: 14px;
+  color: #222;
+  margin-left: 10px;
+}
+.desktop .notepadfolder .topnotepad .btns {
+  display: flex;
+  gap: 6px;
+  height: 100%;
+}
+.desktop .notepadfolder .topnotepad .btns div {
+  padding: 0 12px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.desktop .notepadfolder .topnotepad .btns div:hover {
+  background-color: #cecece;
+}
+.desktop .notepadfolder .topnotepad .btns div.closenotepad:hover {
+  background-color: #ef4444;
+  color: white;
+}
+.desktop .notepadfolder .toolbar {
+  height: 50px;
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  background-color: #f3f3f3;
+  border-bottom: 1px solid #ccc;
+}
+.desktop .notepadfolder .toolbar button {
+  background-color: #e4e4e4;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+  padding: 5px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.desktop .notepadfolder .toolbar button:hover {
+  background-color: #d0d0d0;
+}
+.desktop .notepadfolder textarea {
+  width: 100%;
+  height: calc(100% - 110px);
+  resize: none;
+  border: none;
+  padding: 15px;
+  font-size: 14px;
+  font-family: monospace;
+  outline: none;
+  color: #222;
+  background-color: #fff;
+}
+.desktop #terminal {
+  text-align: center;
+  position: absolute;
+  top: 350px;
+  left: 15px;
+  cursor: pointer;
+  padding: 4px 20px;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.desktop #terminal p {
+  color: white;
+  font-weight: 300;
+}
+.desktop #terminal:hover {
+  background-color: #313131;
+}
+.desktop .terminalfolder {
+  display: none;
+  position: absolute;
+  top: 25vh;
+  left: 20vw;
+  width: 50vw;
+  height: 50vh;
+  background-color: #111827;
+  color: #10b981;
+  font-family: monospace;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+  z-index: 20;
+  overflow: hidden;
+  flex-direction: column;
+}
+.desktop .terminalfolder .topterminal {
+  height: 40px;
+  width: 100%;
+  background: #1f2937;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: grab;
+}
+.desktop .terminalfolder .topterminal p {
+  color: #cecece;
+  font-weight: 600;
+  margin-left: 10px;
+}
+.desktop .terminalfolder .topterminal .btns {
+  display: flex;
+  gap: 6px;
+  height: 100%;
+}
+.desktop .terminalfolder .topterminal .btns div {
+  padding: 0 12px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  color: #cecece;
+}
+.desktop .terminalfolder .topterminal .btns div:hover {
+  background-color: #252525;
+}
+.desktop .terminalfolder .topterminal .btns div.closeterminal:hover {
+  background-color: #ef4444;
+  color: white;
+}
+.desktop .terminalfolder .terminal-content {
+  flex: 1;
+  padding: 10px;
+  max-height: 40%;
+  overflow: auto;
+}
+.desktop .terminalfolder .terminal-content .line {
+  color: #cecece;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.desktop .terminalfolder .terminal-content::-webkit-scrollbar {
+  display: none;
+}
+.desktop .terminalfolder .terminal-input {
+  display: flex;
+  padding: 10px;
+}
+.desktop .terminalfolder .terminal-input .path {
+  margin-right: 5px;
+  color: #00ff00;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.desktop .terminalfolder .terminal-input input {
+  flex: 1;
+  background: transparent;
+  color: #d9ff03;
+  border: none;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 14px;
+  outline: none;
+}
+.desktop #chrome {
+  text-align: center;
+  position: absolute;
+  top: 455px;
+  left: 15px;
+  cursor: pointer;
+  padding: 4px 20px;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+.desktop #chrome p {
+  color: white;
+  font-weight: 300;
+}
+.desktop #chrome:hover {
+  background-color: #313131;
+}
+.desktop .chromefolder {
+  display: none;
+  position: absolute;
+  top: 15vh;
+  left: 10vw;
+  width: 70vw;
+  height: 70vh;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  z-index: 20;
+  overflow: hidden;
+  flex-direction: column;
+}
+.desktop .chromefolder .topchrome {
+  height: 40px;
+  width: 100%;
+  background: linear-gradient(to right, #e4e4e4, #d6d6d6);
+  border-bottom: 1px solid #aaa;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: grab;
+}
+.desktop .chromefolder .topchrome p {
+  font-weight: 600;
+  font-size: 14px;
+  color: #222;
+  margin-left: 10px;
+}
+.desktop .chromefolder .topchrome .btns {
+  display: flex;
+  gap: 6px;
+  height: 100%;
+}
+.desktop .chromefolder .topchrome .btns div {
+  padding: 0 12px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.desktop .chromefolder .topchrome .btns div:hover {
+  background-color: #cecece;
+}
+.desktop .chromefolder .topchrome .btns div.closechrome:hover {
+  background-color: #ef4444;
+  color: white;
+}
+.desktop .chromefolder .toolbar {
+  height: 40px;
+  background-color: #f3f3f3;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  border-bottom: 1px solid #ccc;
+  gap: 6px;
+}
+.desktop .chromefolder .toolbar button {
+  padding: 6px 10px;
+  font-size: 13px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.desktop .chromefolder .toolbar button:hover {
+  background-color: #e5e5e5;
+}
+.desktop .chromefolder .toolbar .reload,
+.desktop .chromefolder .toolbar .back,
+.desktop .chromefolder .toolbar .forward {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.desktop .chromefolder .toolbar .go {
+  background-color: rgb(0, 0, 153);
+  color: #cecece;
+}
+.desktop .chromefolder .toolbar .go:hover {
+  background: #140de1;
+}
+.desktop .chromefolder .toolbar .urlbar {
+  flex: 1;
+  padding: 6px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+.desktop .chromefolder .iframe-container {
+  flex: 1;
+  overflow: hidden;
+  height: 100%;
+}
+.desktop .chromefolder .iframe-container iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
 }
 
 footer {
@@ -122,6 +627,13 @@ footer .mid input::placeholder {
 footer .mid input:focus {
   outline: none;
 }
+footer .mid img {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+footer .mid img:active {
+  scale: 0.9;
+}
 footer .right {
   display: flex;
   align-items: center;
@@ -135,4 +647,216 @@ footer .right .timedate {
   justify-content: center;
   font-size: 13px;
   font-weight: 500;
+}
+footer .right .timedate p {
+  color: white;
+}
+
+.start-menu {
+  display: none;
+  position: absolute;
+  bottom: 8vh;
+  left: 30vw;
+  height: 80vh;
+  width: 35vw;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+.start-menu .pinned-apps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+  gap: 20px;
+  padding: 20px;
+  height: 70vh;
+}
+.start-menu .pinned-apps .app {
+  text-align: center;
+  cursor: pointer;
+  font-size: 24px;
+  padding: 10px 0px;
+}
+.start-menu .pinned-apps .app p {
+  font-size: 15px;
+  color: #222;
+}
+.start-menu .pinned-apps .app:hover {
+  background: #aaaaaa;
+  border-radius: 8px;
+}
+.start-menu .bottom-bar {
+  height: 10vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-top: 1px solid #ddd;
+  font-size: 16px;
+  color: #444;
+}
+.start-menu .bottom-bar .settings {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.start-menu .bottom-bar .settings:active {
+  scale: 0.85;
+}
+
+.settingsfolder {
+  display: none;
+  position: absolute;
+  top: 20vh;
+  left: 20vw;
+  width: 60vw;
+  height: 65vh;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  z-index: 25;
+  flex-direction: column;
+  font-family: "Segoe UI", sans-serif;
+}
+.settingsfolder .topsettings {
+  height: 40px;
+  width: 100%;
+  background: linear-gradient(to right, #e4e4e4, #d6d6d6);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #aaa;
+  cursor: grab;
+}
+.settingsfolder .topsettings p {
+  font-weight: 600;
+  font-size: 14px;
+  color: #222;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 10px;
+}
+.settingsfolder .topsettings .btns {
+  display: flex;
+  gap: 6px;
+  height: 100%;
+}
+.settingsfolder .topsettings .btns div {
+  padding: 0 12px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.settingsfolder .topsettings .btns div:hover {
+  background-color: #cecece;
+}
+.settingsfolder .topsettings .btns div.closesettings:hover {
+  background-color: #ef4444;
+  color: white;
+}
+.settingsfolder .settings-content {
+  flex: 1;
+  display: flex;
+  height: calc(100% - 40px);
+}
+.settingsfolder .settings-content .sidebar {
+  width: 200px;
+  background-color: #f0f0f0;
+  padding: 12px;
+  border-right: 1px solid #ccc;
+}
+.settingsfolder .settings-content .sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.settingsfolder .settings-content .sidebar ul .tab {
+  padding: 10px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 5px;
+  transition: background-color 0.2s ease;
+}
+.settingsfolder .settings-content .sidebar ul .tab:hover {
+  background-color: #dbeafe;
+  font-weight: 500;
+}
+.settingsfolder .settings-content .sidebar ul .tab.active {
+  background-color: #3b82f6;
+  color: white;
+  font-weight: 600;
+}
+.settingsfolder .settings-content .panel {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+.settingsfolder .settings-content .panel .panel-content {
+  display: none;
+}
+.settingsfolder .settings-content .panel .panel-content.hidden {
+  display: none !important;
+}
+.settingsfolder .settings-content .panel .panel-content:not(.hidden) {
+  display: block;
+}
+.settingsfolder .settings-content .panel .panel-content h3 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #222;
+}
+.settingsfolder .settings-content .panel .panel-content .slider {
+  width: 200px;
+  height: 5px;
+  background: #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.settingsfolder .settings-content .panel .panel-content .slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+          appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #3b82f6;
+  cursor: pointer;
+}
+.settingsfolder .settings-content .panel .panel-content .theme-btn {
+  background: #e5e7eb;
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 13px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.settingsfolder .settings-content .panel .panel-content .theme-btn:hover {
+  background-color: #d1d5db;
+}
+.settingsfolder .settings-content .panel .panel-content .wallpaper-options {
+  display: flex;
+  gap: 10px;
+}
+.settingsfolder .settings-content .panel .panel-content .wallpaper-options .wallpaper-thumb {
+  width: 100px;
+  height: 70px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: 0.2s ease;
+}
+.settingsfolder .settings-content .panel .panel-content .wallpaper-options .wallpaper-thumb:hover {
+  border-color: #3b82f6;
+}
+.settingsfolder .settings-content .panel .panel-content .wallpaper-options .wallpaper-thumb.selected {
+  border-color: #10b981;
 }/*# sourceMappingURL=style.css.map */
