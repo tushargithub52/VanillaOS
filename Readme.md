@@ -58,8 +58,8 @@
 
 ## 🌐 Live Demo
 
-> 🔗 [**Click here to try VanillaOS live**](https://your-live-link.com)  
-> _(hosted via Vercel or Netlify)_
+> 🔗 [**Click here to try VanillaOS live**](https://vanillaos.onrender.com/)  
+> _(hosted via render)_
 
 ---
 
