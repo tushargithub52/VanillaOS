@@ -16,7 +16,7 @@ body {
 .wallpaper {
   height: 100vh;
   width: 100vw;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   z-index: 0;
@@ -27,21 +27,43 @@ body {
 }
 
 .desktop {
-  #thispc {
+  .desktop-icon {
     text-align: center;
     position: absolute;
-    top: 35px;
-    left: 15px;
     cursor: pointer;
-    padding: 4px 19px;
     transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-    p {
+    .t-small {
       color: white;
       font-weight: 300;
+      font-size: 12px;
+    }
+    .t-medium {
+      color: white;
+      font-weight: 300;
+      font-size: 16px;
+    }
+    .t-large {
+      color: white;
+      font-weight: 300;
+      font-size: 20px;
     }
     &:hover {
       background-color: #313131;
     }
+    .small{
+      height: 20px;
+    }
+    .medium{
+      height: 40px;
+    }
+    .large{
+      height: 60px;
+    }
+  }
+  #thispc {
+    top: 35px;
+    left: 15px;
+    padding: 6px 25px;
   }
   .thispcfolder {
     display: none;
@@ -187,20 +209,9 @@ body {
     }
   }
   #recyclebin {
-    text-align: center;
-    position: absolute;
     top: 140px;
     left: 15px;
-    cursor: pointer;
-    padding: 4px 12px;
-    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-    p {
-      color: white;
-      font-weight: 300;
-    }
-    &:hover {
-      background-color: #313131;
-    }
+    padding: 6px 12px;
   }
   .recyclebinfolder {
     position: absolute;
@@ -298,20 +309,9 @@ body {
     }
   }
   #notepad {
-    text-align: center;
-    position: absolute;
     top: 245px;
     left: 15px;
-    cursor: pointer;
-    padding: 4px 20px;
-    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-    p {
-      color: white;
-      font-weight: 300;
-    }
-    &:hover {
-      background-color: #313131;
-    }
+    padding: 6px 20px;
   }
   .notepadfolder {
     display: none;
@@ -407,20 +407,9 @@ body {
     }
   }
   #terminal {
-    text-align: center;
-    position: absolute;
     top: 350px;
     left: 15px;
-    cursor: pointer;
-    padding: 4px 20px;
-    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-    p {
-      color: white;
-      font-weight: 300;
-    }
-    &:hover {
-      background-color: #313131;
-    }
+    padding: 6px 22px;
   }
   .terminalfolder {
     display: none;
@@ -515,20 +504,9 @@ body {
     }
   }
   #chrome {
-    text-align: center;
-    position: absolute;
     top: 455px;
     left: 15px;
-    cursor: pointer;
-    padding: 4px 20px;
-    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-    p {
-      color: white;
-      font-weight: 300;
-    }
-    &:hover {
-      background-color: #313131;
-    }
+    padding: 6px 22px;
   }
   .chromefolder {
     display: none;
@@ -637,6 +615,9 @@ body {
       }
     }
   }
+  .custom-folder{
+    padding: 6px 20px;
+  }
 }
 
 footer {
@@ -687,6 +668,25 @@ footer {
     align-items: center;
     justify-content: center;
     gap: 6px;
+    height: 100%;
+    .tray-icons {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      height: 100%;
+      padding: 0 8px;
+
+      .tray-icon {
+        height: 18px;
+        width: 18px;
+        filter: brightness(0) invert(1);
+        transition: scale 0.2s;
+        &:hover {
+          scale: 1.15;
+        }
+      }
+    }
+
     .timedate {
       display: flex;
       flex-direction: column;
@@ -929,6 +929,139 @@ footer {
             &.selected {
               border-color: #10b981;
             }
+          }
+        }
+      }
+    }
+  }
+}
+
+.tray-panels {
+  position: absolute;
+  bottom: 8vh;
+  right: 15px;
+  z-index: 30;
+
+  .panel {
+    width: 220px;
+    background-color: #212121;
+    border-radius: 8px;
+    box-shadow: 0 0px 2px rgba(208, 208, 208, 0.645);
+    padding: 15px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-family: "Segoe UI", sans-serif;
+
+    h4 {
+      margin-bottom: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      color: white;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      li {
+        padding: 6px 10px;
+        margin-bottom: 4px;
+        background: #414141;
+        border: 1px solid #cecece;
+        border-radius: 4px;
+        cursor: pointer;
+        color: white;
+        &:hover {
+          opacity: 0.8;
+        }
+      }
+    }
+
+    .volume-slider {
+      width: 100%;
+    }
+    .status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      p {
+        color: white;
+      }
+      img {
+        filter: brightness(0) invert(1);
+      }
+    }
+  }
+
+  .hidden {
+    display: none;
+  }
+}
+
+.desktop-context-menu {
+  position: absolute;
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  width: 200px;
+  z-index: 1000;
+  font-size: 14px;
+  padding: 6px 0;
+
+  &.hidden {
+    display: none;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li {
+      padding: 8px 14px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s ease;
+
+      &:hover {
+        background-color: #e5e7eb;
+      }
+
+      &.has-submenu {
+        position: relative;
+
+        &::after {
+          content: "▶";
+          position: absolute;
+          right: 12px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 10px;
+        }
+
+        .submenu {
+          position: absolute;
+          top: 0;
+          left: 100%;
+          background: #f9f9f9;
+          border: 1px solid #ccc;
+          border-radius: 6px;
+          padding: 4px 0;
+          width: 160px;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+          display: none;
+        }
+
+        &:hover .submenu {
+          display: block;
+        }
+
+        .submenu li {
+          padding: 8px 12px;
+
+          &:hover {
+            background-color: #dbeafe;
           }
         }
       }

@@ -7,13 +7,12 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="wallpaper">
-    </div>
+    <div class="wallpaper"></div>
 
     <main class="desktop">
-      <div id="thispc">
-        <img src="./assets/thispc.png" alt="" height="40px" />
-        <p>This PC</p>
+      <div id="thispc" class="desktop-icon">
+        <img class="medium" src="./assets/thispc.png" alt="" />
+        <p class="t-medium" contenteditable="true">This PC</p>
       </div>
       <div class="thispcfolder">
         <div class="topthispc">
@@ -53,9 +52,9 @@
         </div>
       </div>
 
-      <div id="recyclebin">
-        <img src="./assets/recycle-bin.png" alt="" height="40px" />
-        <p>Recycle Bin</p>
+      <div id="recyclebin" class="desktop-icon">
+        <img class="medium" src="./assets/recycle-bin.png" alt="" />
+        <p class="t-medium" contenteditable="true">Recycle Bin</p>
       </div>
       <div class="recyclebinfolder">
         <div class="toprecyclebin">
@@ -77,9 +76,9 @@
         </div>
       </div>
 
-      <div id="notepad">
-        <img src="./assets/notepad.png" alt="" height="40px" />
-        <p>Notepad</p>
+      <div id="notepad" class="desktop-icon">
+        <img class="medium" src="./assets/notepad.png" alt="" />
+        <p class="t-medium" contenteditable="true">Notepad</p>
       </div>
       <div class="notepadfolder">
         <div class="topnotepad">
@@ -103,9 +102,9 @@
         ></textarea>
       </div>
 
-      <div id="terminal">
-        <img src="./assets/terminal.png" alt="" height="40px" />
-        <p>Terminal</p>
+      <div id="terminal" class="desktop-icon">
+        <img class="medium" src="./assets/terminal.png" alt="" />
+        <p class="t-medium" contenteditable="true">Terminal</p>
       </div>
       <div class="terminalfolder">
         <div class="topterminal">
@@ -127,9 +126,9 @@
         </label>
       </div>
 
-      <div id="chrome">
-        <img src="./assets/chrome.png" alt="" height="40px" />
-        <p>Chrome</p>
+      <div id="chrome" class="desktop-icon">
+        <img class="medium" src="./assets/chrome.png" alt="" />
+        <p class="t-medium" contenteditable="true">Chrome</p>
       </div>
       <div class="chromefolder">
         <div class="topchrome">
@@ -168,6 +167,12 @@
         <input type="text" placeholder="🔍  Search web & PC" id="search" />
       </div>
       <div class="right">
+        <div class="tray-icons">
+          <img src="./assets/wifi.png" class="tray-icon" alt="Wi-Fi" />
+          <img src="./assets/volume.png" class="tray-icon" alt="Volume" />
+          <img src="./assets/battery.png" class="tray-icon" alt="Battery" />
+        </div>
+
         <div class="timedate">
           <p class="time"></p>
           <p class="date"></p>
@@ -177,6 +182,24 @@
         /></span>
       </div>
     </footer>
+
+    <div class="desktop-context-menu hidden">
+      <ul>
+        <li class="has-submenu">
+          👁️ View
+          <ul class="submenu">
+            <li data-size="large">Large Icons</li>
+            <li data-size="medium">Medium Icons</li>
+            <li data-size="small">Small Icons</li>
+          </ul>
+        </li>
+        <li id="refresh">🔄 Refresh</li>
+        <li id="new-folder">🗂️ New Folder</li>
+        <li id="change-wallpaper">🖼️ Change Wallpaper</li>
+        <li id="open-settings">⚙️ Settings</li>
+        <li id="open-terminal">💻 Terminal</li>
+      </ul>
+    </div>
 
     <div class="start-menu">
       <div class="pinned-apps">
@@ -284,6 +307,40 @@
         </section>
       </div>
     </div>
+
+    <div class="tray-panels">
+      <div class="wifi-panel panel hidden">
+        <h4>🛜 Available Networks</h4>
+        <ul>
+          <li>Home WiFi 🔒</li>
+          <li>CampusNet</li>
+          <li>Mobile Hotspot 🔒</li>
+        </ul>
+      </div>
+
+      <div class="volume-panel panel hidden">
+        <h4>Volume</h4>
+        <div class="status">
+          <img src="./assets/volume.png" alt="" height="18px" width="18px" />
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value="70"
+            class="volume-slider"
+          />
+        </div>
+      </div>
+
+      <div class="battery-panel panel hidden">
+        <h4>🔋Battery Status</h4>
+        <div class="status">
+          <img src="./assets/battery.png" alt="" height="18px" width="18px" />
+          <p>88%</p>
+        </div>
+      </div>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>

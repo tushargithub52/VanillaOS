@@ -38,7 +38,7 @@ function setupAppWindow({ icon, win, closeBtn, maxBtn, topbar, default: def }) {
     winEl.style.height = def.height;
     winEl.style.borderRadius = "10px";
     winEl.style.zIndex = ++setupAppWindow.zIndexTop;
-    isMax = false
+    isMax = false;
   });
 
   // CLOSE
@@ -46,10 +46,8 @@ function setupAppWindow({ icon, win, closeBtn, maxBtn, topbar, default: def }) {
     winEl.style.display = "none";
   });
 
-  
   // MAXIMIZE/RESTORE
   maxEl.addEventListener("click", () => {
-    
     if (isMax) {
       winEl.style.width = def.width;
       winEl.style.height = def.height;
@@ -77,6 +75,7 @@ function setupAppWindow({ icon, win, closeBtn, maxBtn, topbar, default: def }) {
     offsetX = e.clientX - winEl.offsetLeft;
     offsetY = e.clientY - winEl.offsetTop;
     topbarEl.style.cursor = "grabbing";
+    winEl.style.zIndex = ++setupAppWindow.zIndexTop;
   });
 
   document.addEventListener("mousemove", (e) => {
@@ -297,7 +296,7 @@ apps.forEach((app) => {
     const win = document.querySelector(`.${target}folder`);
     win.style.display = "block";
     win.style.zIndex = ++setupAppWindow.zIndexTop;
-    console.log("chala")
+    document.querySelector(".start-menu").style.display = "none";
   });
 });
 
@@ -362,3 +361,126 @@ wallpaperThumbs.forEach((img) => {
   });
 });
 
+//taskbar wifi, volume and battery LOGIC
+const wifiIcon = document.querySelector("img[alt='Wi-Fi']");
+const volumeIcon = document.querySelector("img[alt='Volume']");
+const batteryIcon = document.querySelector("img[alt='Battery']");
+
+const wifiPanel = document.querySelector(".wifi-panel");
+const volumePanel = document.querySelector(".volume-panel");
+const batteryPanel = document.querySelector(".battery-panel");
+
+// Hide all panels
+function hideAllPanels() {
+  wifiPanel.classList.add("hidden");
+  volumePanel.classList.add("hidden");
+  batteryPanel.classList.add("hidden");
+}
+
+wifiIcon.addEventListener("click", () => {
+  hideAllPanels();
+  wifiPanel.classList.toggle("hidden");
+});
+
+volumeIcon.addEventListener("click", () => {
+  hideAllPanels();
+  volumePanel.classList.toggle("hidden");
+});
+
+batteryIcon.addEventListener("click", () => {
+  hideAllPanels();
+  batteryPanel.classList.toggle("hidden");
+});
+
+// Hide panels when we click outside of the panel
+document.addEventListener("click", (e) => {
+  const isTray =
+    e.target.closest(".tray-panels") || e.target.closest(".tray-icon");
+  if (!isTray) hideAllPanels();
+});
+
+//right-click context menu LOGIC
+const contextMenu = document.querySelector(".desktop-context-menu");
+document.querySelector(".wallpaper").addEventListener("contextmenu", (e) => {
+  e.preventDefault();
+  const { clientX: mouseX, clientY: mouseY } = e;
+  contextMenu.style.top = `${mouseY}px`;
+  contextMenu.style.left = `${mouseX}px`;
+  contextMenu.classList.remove("hidden");
+});
+
+//hide context-menu when clicked anywhere else on screen
+document.addEventListener("click", (e) => {
+  const isTray = e.target.closest(".desktop-context-menu");
+  if (!isTray) contextMenu.classList.add("hidden");
+});
+
+// refresh LOGIC
+document.getElementById("refresh").addEventListener("click", () => {
+  window.location.reload();
+});
+
+//open-settings LOGIC
+document.getElementById("open-settings").addEventListener("click", () => {
+  document.querySelector(".settingsfolder").style.display = "block";
+  document.querySelector(".settingsfolder").style.zIndex = 1001;
+});
+
+//open-terminal LOGIC
+document.getElementById("open-terminal").addEventListener("click", () => {
+  document.querySelector(".terminalfolder").style.display = "block";
+  document.querySelector(".terminalfolder").style.zIndex = 1001;
+});
+
+//control icon size LOGIC
+document.querySelectorAll(".submenu li").forEach((item) => {
+  item.addEventListener("click", () => {
+    const size = item.dataset.size;
+    document.querySelectorAll(".desktop-icon").forEach((icon) => {
+      icon.childNodes[1].classList.remove("large", "medium", "small");
+      icon.childNodes[1].classList.add(size);
+      icon.childNodes[3].classList.remove("t-small", "t-medium", "t-large");
+      icon.childNodes[3].classList.add(`t-${size}`)
+    });
+  });
+});
+
+//create new Folder LOGIC
+let folderCount = 0; 
+const iconsPerColumn = 5;
+const baseTop = 35; 
+const baseLeft = 15; 
+const ySpacing = 105; 
+const xSpacing = 150; 
+
+function createNewFolder() {
+  const col = Math.floor(folderCount / iconsPerColumn); 
+  const row = folderCount % iconsPerColumn; 
+
+  const top = baseTop + row * ySpacing;
+  const left = baseLeft + (col+1) * xSpacing;
+
+  const newFolder = document.createElement("div");
+  newFolder.classList.add("desktop-icon", "custom-folder");
+  newFolder.style.top = `${top}px`;
+  newFolder.style.left = `${left}px`;
+  newFolder.innerHTML = `
+    <img class="medium" src="./assets/file-explorer.png" />
+    <p class="t-medium" contenteditable="true">New Folder ${folderCount + 1}</p>
+  `;
+
+  document.querySelector(".desktop").appendChild(newFolder);
+  folderCount++;
+}
+document.getElementById("new-folder").addEventListener("click", () => {
+  createNewFolder();
+})
+
+//change-wallpaper LOGIC
+let x = 1;
+document.getElementById('change-wallpaper').addEventListener("click", () =>{
+  const wallpaperEl = document.querySelector('.wallpaper');
+  wallpaperEl.style.backgroundImage = `url("./assets/Image${x}.jpg")`;
+  x++;
+  if (x > 5) x = 1;
+})

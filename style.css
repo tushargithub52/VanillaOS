@@ -1,3 +1,4 @@
+@charset "UTF-8";
 * {
   margin: 0;
   padding: 0;
@@ -17,7 +18,7 @@ body {
 .wallpaper {
   height: 100vh;
   width: 100vw;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   z-index: 0;
@@ -27,21 +28,43 @@ body {
   background-repeat: no-repeat;
 }
 
-.desktop #thispc {
+.desktop .desktop-icon {
   text-align: center;
   position: absolute;
-  top: 35px;
-  left: 15px;
   cursor: pointer;
-  padding: 4px 19px;
   transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
-.desktop #thispc p {
+.desktop .desktop-icon .t-small {
   color: white;
   font-weight: 300;
+  font-size: 12px;
 }
-.desktop #thispc:hover {
+.desktop .desktop-icon .t-medium {
+  color: white;
+  font-weight: 300;
+  font-size: 16px;
+}
+.desktop .desktop-icon .t-large {
+  color: white;
+  font-weight: 300;
+  font-size: 20px;
+}
+.desktop .desktop-icon:hover {
   background-color: #313131;
+}
+.desktop .desktop-icon .small {
+  height: 20px;
+}
+.desktop .desktop-icon .medium {
+  height: 40px;
+}
+.desktop .desktop-icon .large {
+  height: 60px;
+}
+.desktop #thispc {
+  top: 35px;
+  left: 15px;
+  padding: 6px 25px;
 }
 .desktop .thispcfolder {
   display: none;
@@ -169,20 +192,9 @@ body {
   font-size: 13px;
 }
 .desktop #recyclebin {
-  text-align: center;
-  position: absolute;
   top: 140px;
   left: 15px;
-  cursor: pointer;
-  padding: 4px 12px;
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-}
-.desktop #recyclebin p {
-  color: white;
-  font-weight: 300;
-}
-.desktop #recyclebin:hover {
-  background-color: #313131;
+  padding: 6px 12px;
 }
 .desktop .recyclebinfolder {
   position: absolute;
@@ -271,20 +283,9 @@ body {
   transform: scale(1.2);
 }
 .desktop #notepad {
-  text-align: center;
-  position: absolute;
   top: 245px;
   left: 15px;
-  cursor: pointer;
-  padding: 4px 20px;
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-}
-.desktop #notepad p {
-  color: white;
-  font-weight: 300;
-}
-.desktop #notepad:hover {
-  background-color: #313131;
+  padding: 6px 20px;
 }
 .desktop .notepadfolder {
   display: none;
@@ -371,20 +372,9 @@ body {
   background-color: #fff;
 }
 .desktop #terminal {
-  text-align: center;
-  position: absolute;
   top: 350px;
   left: 15px;
-  cursor: pointer;
-  padding: 4px 20px;
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-}
-.desktop #terminal p {
-  color: white;
-  font-weight: 300;
-}
-.desktop #terminal:hover {
-  background-color: #313131;
+  padding: 6px 22px;
 }
 .desktop .terminalfolder {
   display: none;
@@ -471,20 +461,9 @@ body {
   outline: none;
 }
 .desktop #chrome {
-  text-align: center;
-  position: absolute;
   top: 455px;
   left: 15px;
-  cursor: pointer;
-  padding: 4px 20px;
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-}
-.desktop #chrome p {
-  color: white;
-  font-weight: 300;
-}
-.desktop #chrome:hover {
-  background-color: #313131;
+  padding: 6px 22px;
 }
 .desktop .chromefolder {
   display: none;
@@ -588,6 +567,9 @@ body {
   height: 100%;
   border: none;
 }
+.desktop .custom-folder {
+  padding: 6px 20px;
+}
 
 footer {
   background-color: rgb(33, 33, 33);
@@ -639,6 +621,23 @@ footer .right {
   align-items: center;
   justify-content: center;
   gap: 6px;
+  height: 100%;
+}
+footer .right .tray-icons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 100%;
+  padding: 0 8px;
+}
+footer .right .tray-icons .tray-icon {
+  height: 18px;
+  width: 18px;
+  filter: brightness(0) invert(1);
+  transition: scale 0.2s;
+}
+footer .right .tray-icons .tray-icon:hover {
+  scale: 1.15;
 }
 footer .right .timedate {
   display: flex;
@@ -859,4 +858,122 @@ footer .right .timedate p {
 }
 .settingsfolder .settings-content .panel .panel-content .wallpaper-options .wallpaper-thumb.selected {
   border-color: #10b981;
+}
+
+.tray-panels {
+  position: absolute;
+  bottom: 8vh;
+  right: 15px;
+  z-index: 30;
+}
+.tray-panels .panel {
+  width: 220px;
+  background-color: #212121;
+  border-radius: 8px;
+  box-shadow: 0 0px 2px rgba(208, 208, 208, 0.645);
+  padding: 15px;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-family: "Segoe UI", sans-serif;
+}
+.tray-panels .panel h4 {
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: white;
+}
+.tray-panels .panel ul {
+  list-style: none;
+  padding: 0;
+}
+.tray-panels .panel ul li {
+  padding: 6px 10px;
+  margin-bottom: 4px;
+  background: #414141;
+  border: 1px solid #cecece;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+}
+.tray-panels .panel ul li:hover {
+  opacity: 0.8;
+}
+.tray-panels .panel .volume-slider {
+  width: 100%;
+}
+.tray-panels .panel .status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+.tray-panels .panel .status p {
+  color: white;
+}
+.tray-panels .panel .status img {
+  filter: brightness(0) invert(1);
+}
+.tray-panels .hidden {
+  display: none;
+}
+
+.desktop-context-menu {
+  position: absolute;
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  width: 200px;
+  z-index: 1000;
+  font-size: 14px;
+  padding: 6px 0;
+}
+.desktop-context-menu.hidden {
+  display: none;
+}
+.desktop-context-menu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.desktop-context-menu ul li {
+  padding: 8px 14px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s ease;
+}
+.desktop-context-menu ul li:hover {
+  background-color: #e5e7eb;
+}
+.desktop-context-menu ul li.has-submenu {
+  position: relative;
+}
+.desktop-context-menu ul li.has-submenu::after {
+  content: "▶";
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 10px;
+}
+.desktop-context-menu ul li.has-submenu .submenu {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 4px 0;
+  width: 160px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  display: none;
+}
+.desktop-context-menu ul li.has-submenu:hover .submenu {
+  display: block;
+}
+.desktop-context-menu ul li.has-submenu .submenu li {
+  padding: 8px 12px;
+}
+.desktop-context-menu ul li.has-submenu .submenu li:hover {
+  background-color: #dbeafe;
 }/*# sourceMappingURL=style.css.map */
